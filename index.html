@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для тебя ❤️</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(150deg,#f30024,#000000);
+    height:100vh;
+}
+
+/* Intro */
+.start-screen{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction:column;
+    z-index: 5;
+}
+
+.open-btn{
+    padding:25px 70px;
+    border:none;
+    border-radius:40px;
+    background:rgb(230, 122, 122);
+    font-size:25px;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(255,255,255,0.7);
+    transition:0.3s;
+}
+
+.open-btn:hover{
+    transform:scale(1.08);
+}
+
+/* Letter */
+.letter{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:340px;
+    background:rgb(230, 122, 122);
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(0,0,0,0.15);
+    line-height:1.7;
+    z-index:3;
+    animation:fadeIn 2s;
+}
+
+h2{
+    text-align:center;
+}
+
+.signature{
+    text-align:right;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+/* Hearts */
+.heart{
+    position: fixed;
+    bottom: -50px;
+
+    width: 70px;
+    height: 70px;
+
+    object-fit: cover;
+    border-radius: 15px;
+
+    animation: floatUp 5s linear forwards;
+
+    z-index: 1;
+    pointer-events: none;
+
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-110vh) scale(1.5);
+        opacity:0;
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translate(-50%,-45%);
+    }
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%);
+    }
+}
+
+@keyframes floatUp{
+    0%{
+        transform: translateY(0) scale(1);
+        opacity:1;
+    }
+
+    100%{
+        transform: translateY(-120vh) scale(1.8);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="start-screen" id="start">
+    <button class="open-btn" onclick="openLetter()">
+        открыть
+    </button>
+</div>
+
+<div class="letter" id="letter">
+    <h2>Для тебя ❤️</h2>
+
+    <p>
+        С тобой всё стало красивее.
+Даже обычный день становится особенным,
+если в нём есть ты.
+    </p>
+
+    <p>
+        Мне нравится твоя улыбка,
+твой голос и то,
+как ты делаешь меня счастливым.
+    </p>
+
+    <p style="text-align:center; font-size:22px;">
+        Я тебя люблю ❤️
+    </p>
+
+    <div class="signature">
+        from r4lph to JK 💌
+    </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="nLZczb8bSJPPEtRTGBIM+QGPe6XpSwkg.m4a" type="audio/mpeg">
+</audio>
+
+<script>
+
+function openLetter(){
+
+    document.getElementById("start").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+
+    document.getElementById("music").play();
+
+    setInterval(createHeart, 300);
+}
+
+function createHeart(){
+
+    const heart = document.createElement("img");
+
+    heart.src = "mylooov.jpg";
+
+    heart.classList.add("heart");
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+</script>
+</body>
+</html>
